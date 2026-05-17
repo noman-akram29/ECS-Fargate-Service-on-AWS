@@ -18,7 +18,7 @@ resource "aws_appautoscaling_policy" "cpu_tracking" {
 
   target_tracking_scaling_policy_configuration {
 
-    target_value = 50  # single balanced target
+    target_value = 70  # single balanced target
 
     predefined_metric_specification {
       predefined_metric_type = "ECSServiceAverageCPUUtilization"

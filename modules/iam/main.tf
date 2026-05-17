@@ -20,7 +20,6 @@ resource "aws_iam_role_policy_attachment" "execution_role_policy" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
-# ✅ FIX: Secrets access moved to execution role
 resource "aws_iam_role_policy" "execution_secrets_policy" {
   name = "${var.environment}-ecs-execution-secrets-policy"
   role = aws_iam_role.execution_role.id
@@ -54,4 +53,20 @@ resource "aws_iam_role" "task_role" {
   })
 
   tags = var.tags
+}
+
+resource "aws_iam_role_policy" "task_secrets_policy" {
+  name = "${var.environment}-ecs-task-secrets-policy"
+  role = aws_iam_role.task_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect   = "Allow"
+        Action   = ["secretsmanager:GetSecretValue"]
+        Resource = var.db_secret_arn   # Specific ARN only - meets least privilege
+      }
+    ]
+  })
 }

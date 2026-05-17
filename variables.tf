@@ -5,6 +5,10 @@ variable "aws_region" {
 
 variable "environment" {
   type = string
+  validation {
+    condition     = contains(["dev", "staging", "prod"], var.environment)
+    error_message = "Environment must be one of: dev, staging, prod."
+  }
 }
 
 variable "vpc_id" {
@@ -12,11 +16,21 @@ variable "vpc_id" {
 }
 
 variable "public_subnet_ids" {
-  type = list(string)
+  type        = list(string)
+  description = "List of public subnet IDs for ALB"
+  validation {
+    condition     = length(var.public_subnet_ids) >= 2
+    error_message = "At least 2 public subnets are required for ALB high availability."
+  }
 }
 
 variable "private_subnet_ids" {
-  type = list(string)
+  type        = list(string)
+  description = "List of private subnet IDs for ECS tasks"
+  validation {
+    condition     = length(var.private_subnet_ids) >= 2
+    error_message = "At least 2 private subnets are required for ECS tasks."
+  }
 }
 
 variable "db_secret_arn" {

@@ -79,6 +79,11 @@ module "ecs_service" {
   aws_region = var.aws_region
 
   tags = local.tags
+  depends_on = [
+    module.alb,
+    module.security_groups,
+    module.cloudwatch
+  ]
 }
 
 module "autoscaling" {
