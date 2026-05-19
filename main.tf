@@ -79,6 +79,11 @@ module "ecs_service" {
   aws_region = var.aws_region
 
   tags = local.tags
+  # depends_on = [
+  #   module.alb,
+  #   module.security_groups,
+  #   module.cloudwatch
+  # ]
 }
 
 module "autoscaling" {
@@ -89,8 +94,8 @@ module "autoscaling" {
   cluster_name = module.ecs_cluster.cluster_name
   service_name = module.ecs_service.service_name
 
-  min_capacity = 2
-  max_capacity = 10
+  min_capacity = var.min_capacity
+  max_capacity = var.max_capacity
 
   tags = local.tags
 

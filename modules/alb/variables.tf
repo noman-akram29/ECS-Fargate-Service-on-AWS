@@ -27,3 +27,8 @@ variable "acm_certificate_arn" {
 variable "tags" {
   type = map(string)
 }
+
+variable "target_port" {
+  type    = number
+  default = 3000
+}
