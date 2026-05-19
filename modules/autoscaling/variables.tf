@@ -18,6 +18,16 @@ variable "max_capacity" {
   type = number
 }
 
+variable "cpu_target_value" {
+  type    = number
+  default = 70
+}
+
+variable "memory_target_value" {
+  type    = number
+  default = 75
+}
+
 variable "tags" {
   type = map(string)
 }

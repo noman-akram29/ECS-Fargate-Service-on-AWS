@@ -49,3 +49,18 @@ variable "db_secret_arn" {
 variable "tags" {
   type = map(string)
 }
+
+variable "task_cpu" {
+  type    = number
+  default = 512
+}
+
+variable "task_memory" {
+  type    = number
+  default = 1024
+}
+
+variable "container_port" {
+  type    = number
+  default = 3000
+}
