@@ -1,6 +1,25 @@
 # ---------------------------
+# Node.js
+# ---------------------------
+node_modules/
+dist/
+build/
+coverage/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+# ---------------------------
+# Docker
+# ---------------------------
+.dockerignore
+docker-compose.override.yml
+
+# ---------------------------
 # Terraform core files
 # ---------------------------
+**/.terraform/
 .terraform/
 *.tfstate
 *.tfstate.*
@@ -10,7 +29,7 @@ crash.log
 crash.*.log
 
 # Provider lock file (optional: many teams KEEP this, but ignoring is fine for personal use)
-.terraform.lock.hcl
+# .terraform.lock.hcl
 
 # ---------------------------
 # Terraform variables (may contain secrets)
