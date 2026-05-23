@@ -1,0 +1,16 @@
+{
+  "name": "payment-webhook-service",
+  "version": "1.0.0",
+  "description": "Production Node.js payment webhook processor",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "mkdir -p dist && cp -r src/* dist/",
+    "start": "node dist/server.js",
+    "dev": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0"
+  }
+}
