@@ -1,0 +1,9 @@
+trigger:
+- dev
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo "Hello from Azure DevOps YAML Pipeline"
+  displayName: "Run script step"
